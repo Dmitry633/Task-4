@@ -43,7 +43,7 @@ function chooseExpenses(){
  function detectDayBudget() {
 	appData.moneyPerDay = (appData.budget / 30).toFixed(); 
 
-	   alert('Ежедневный бюджет: ' + appData.moneyPerDay);
+	   alert('Ежедневный бюджет: ' + appData.moneyPerDay + "руб."); //ВНЕСЕНИЕ КОРРЕКТИРОВКИ, СОГЛАСНО ОТВЕТУ ПРЕПОДА
 }
 detectDayBudget();
  //appData.moneyPerDay = (appData.budget / 30).toFixed();					//перенесено в функцию detectDayBudget()
@@ -79,16 +79,12 @@ checkSavings();
 
 function chooseOptExpenses() {
 	for (let i = 1; i < 4; i++)	{						
-		let a = prompt("Статья необязательных расходов", '');
+		let a = prompt("Статья необязательных расходов?");
 		
-			if ( (typeof(a)) === 'string' && (typeof(a)) != null 
-			&& a != '' && a.length < 50) {
-				console.log('done');
-				appData.optionalExpenses[i] = a;		// Точку здесь использовать нельзя, используются именно [] т.к. в "а" мы передаем переменную, 
+			appData.optionalExpenses[i] = a;		// Точку здесь использовать нельзя, используются именно [] т.к. в "а" мы передаем переменную, 
 				// а если мы используем [], то "свойство" может содержать любую "строку"
-			} else {
-	i--
-			}
+				console.log(appData.optionalExpenses);				//ВНЕСЕНИЕ КОРРЕКТИРОВКИ, СОГЛАСНО ОТВЕТУ ПРЕПОДА
+			
 	 }
 
 }
