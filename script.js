@@ -67,7 +67,9 @@ let appData = {
 			console.log(appData.optionalExpenses);			
 		}
 	},
-	chooseIncome: function() {//Создадим новый метод
+	/*chooseIncome: function() {//Создадим новый метод КОД ВЫДАЕТ ОШИБКУ ПРИ ОТМЕНЕ ИЗ-ЗА SPLIT(код успевает дойти до этого метода,
+	//	 до того, как пользователь может нажать "отмена")ТАКЖЕ ПРИ НЕКОРРЕКТНОМ ВВОДЕ 2-3 РАЗА ПОВТОР ВОПРОСА ПРОИСХОДИТ ТАКЖЕ 2-3 РАЗА
+	//	 (думаю это из-за вызова appData.chooseIncome() в блоке else)
 		let items = prompt('Что принесет дополнительный доход? (Перечислите через запятую)', '' );// - ответ получаем как строку
 
 		appData.income = items.split(', ');//запишем ответы пользователя - строку в массив income -для этого используем split
@@ -82,18 +84,30 @@ let appData = {
 
 			else{
 				console.log("Произошла ошибка, введите корректные данные");
-				appData.chooseIncome();
+				//appData.chooseIncome();
 			}
-		}
+		}*/
+	chooseIncome: function() {
+		for(let k=0; k<1; k++){
+			let items = prompt('Что принесет дополнительный доход? (Перечислите через запятую)', '' );// - ответ получаем как строку
+				if (typeof(items) != 'string' || items == "" || typeof(items) == null) {
+					console.log("Произошла ошибка, введите корректные данные");
+					k--;
+				}
+				else{
+					appData.income = items.split(', ');//запишем ответы пользователя - строку в массив income -для этого используем split
+					appData.income.push(prompt("Может что-то еще?"));
+					appData.income.sort();
+				}
+			}
+				
 		appData.income.forEach(function(item, i){
-			alert("Способы доп. заработка: " );
-			alert(i+1 +  ': ' + item);
-
+			alert("Способы доп. заработка: " + (i+1) + " - " + item );
 		})
 	}
 };
 console.log( "Наша программа включает в себя данные: " );
 for (let key in appData){
-	console.log(key);
+	console.log("Наша программа включает в себя данные: " + key + " - " + appData[key]);
 	}
 
